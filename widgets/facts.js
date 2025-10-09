@@ -1,5 +1,8 @@
+'use client'
+
 import { Title } from "../shared/ui";
 import { Button } from "../shared/ui";
+import { useState } from "react";
 
 const links = [
     {link: "#", children: "Собаки умеют пользоваться общественным транспортом, прямо как студенты."},
@@ -14,17 +17,23 @@ const links = [
     {link: "#", children: "Интеллект взрослой собаки примерно равен уровню развития студента 4 курса."},
 ]
 
+const positive = {title: "Здорово!"};
+const negative = {title: "Нездорово"}
+
+
 export const Facts = () =>{
+    const [button, setButton] = useState(positive)
     return(
-        <div>
+        <div className="my-18">
           <Title children="Интересные факты про собак" />
-         <ol>
+         <ol className="mt-13">
             {links.map((item, i) =>{
                 return (
-                    <li key={i}>{i + 1}.{item.children}</li>
+                    <li key={i} className="font-[Montserrar] font-semibold text-xl text-[#222733">{i + 1}.{item.children}</li>
                 )
             })}
          </ol>
+         <Button children={button.title} func={() => setButton(button === positive ? negative : positive)}/>
         </div>
     )
 }
